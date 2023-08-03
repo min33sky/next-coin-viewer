@@ -1,3 +1,4 @@
+import getAllCoins from '@/actions/getAllCoins';
 import SearchBar from '@/components/SearchBar';
 import { Button } from '@/components/ui/button';
 import {
@@ -9,7 +10,11 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 
-export default function CoinsPage() {
+export default async function CoinsPage() {
+  const coins = await getAllCoins();
+
+  console.log('모든 코인: ', coins);
+
   return (
     <main>
       <SearchBar />
