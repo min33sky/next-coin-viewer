@@ -1,11 +1,20 @@
 import getAllCoins from '@/actions/getAllCoins';
 import CoinCard from '@/components/CoinCard';
+import InfinityScrollTrigger from '@/components/InfinityScrollTrigger';
 import SearchBar from '@/components/SearchBar';
 
-export default async function CoinsPage() {
-  const coins = await getAllCoins();
+interface CoinsPageProps {
+  searchParams: { [key: string]: string | string[] | undefined };
+}
 
-  console.log('모든 코인: ', coins);
+export default async function CoinsPage({ searchParams }: CoinsPageProps) {
+  console.log('검색 파라미터: ', searchParams);
+
+  const limit = searchParams.limit ? Number(searchParams.limit) : 20;
+
+  const coins = await getAllCoins(limit);
+
+  // console.log('모든 코인: ', coins);
 
   if (coins.data.length === 0) {
     return (
@@ -23,6 +32,7 @@ export default async function CoinsPage() {
         {coins.data.map((coin) => (
           <CoinCard key={coin.id} coin={coin} />
         ))}
+        <InfinityScrollTrigger limit={limit} />
       </ul>
     </main>
   );

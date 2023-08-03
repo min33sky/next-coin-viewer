@@ -9,6 +9,7 @@ import {
 } from './ui/card';
 import { Coin } from '@/types/coin';
 import CoinLogo from './CoinLogo';
+import Link from 'next/link';
 
 interface CoinCardProps {
   coin: Coin;
@@ -30,8 +31,10 @@ export default function CoinCard({ coin }: CoinCardProps) {
           {Number(coin.priceUsd).toFixed(2)} 달러
         </div>
       </CardContent>
-      <CardFooter>
-        <Button>자세히</Button>
+      <CardFooter className="flex justify-end">
+        <Button asChild>
+          <Link href={`/coins/${coin.id}`}>자세히 보기</Link>
+        </Button>
       </CardFooter>
     </Card>
   );

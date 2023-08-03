@@ -1,10 +1,10 @@
 import { CoinList } from '@/types/coin';
 
-const BASE_URL = 'https://api.coincap.io/v2/assets?limit=3';
+const BASE_URL = 'https://api.coincap.io/v2/assets';
 
-export default async function getAllCoins(offset: number = 0) {
+export default async function getAllCoins(limit: number = 20) {
   try {
-    const response = await fetch(`${BASE_URL}&offset=${offset}`);
+    const response = await fetch(`${BASE_URL}?limit=${limit}`);
     const data = (await response.json()) as CoinList;
     return data;
   } catch (error) {
