@@ -1,85 +1,28 @@
 import getAllCoins from '@/actions/getAllCoins';
+import CoinCard from '@/components/CoinCard';
 import SearchBar from '@/components/SearchBar';
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
 
 export default async function CoinsPage() {
   const coins = await getAllCoins();
 
   console.log('모든 코인: ', coins);
 
+  if (coins.data.length === 0) {
+    return (
+      <div>
+        <h1>코인이 없습니다.</h1>
+      </div>
+    );
+  }
+
   return (
     <main>
       <SearchBar />
 
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <Card>
-          <CardHeader>
-            <CardTitle>Create project</CardTitle>
-            <CardDescription>
-              Deploy your new project in one-click.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>코인 1</CardContent>
-          <CardFooter>
-            <Button>자세히</Button>
-          </CardFooter>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Create project</CardTitle>
-            <CardDescription>
-              Deploy your new project in one-click.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>코인 2</CardContent>
-          <CardFooter>
-            <Button>자세히</Button>
-          </CardFooter>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Create project</CardTitle>
-            <CardDescription>
-              Deploy your new project in one-click.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>코인 3</CardContent>
-          <CardFooter>
-            <Button>자세히</Button>
-          </CardFooter>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Create project</CardTitle>
-            <CardDescription>
-              Deploy your new project in one-click.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>코인 4</CardContent>
-          <CardFooter>
-            <Button>자세히</Button>
-          </CardFooter>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Create project</CardTitle>
-            <CardDescription>
-              Deploy your new project in one-click.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>코인 5</CardContent>
-          <CardFooter>
-            <Button>자세히</Button>
-          </CardFooter>
-        </Card>
+      <ul className="mt-24 pb-24 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 container">
+        {coins.data.map((coin) => (
+          <CoinCard key={coin.id} coin={coin} />
+        ))}
       </ul>
     </main>
   );
