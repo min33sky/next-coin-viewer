@@ -1,5 +1,7 @@
+import { ThemeProvider } from '@/components/theme-provider';
 import './globals.css';
 import type { Metadata } from 'next';
+import Header from '@/components/Header';
 
 export const metadata: Metadata = {
   title: 'Coin Viewer',
@@ -12,8 +14,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko" className="antialiased scroll-smooth">
-      <body className="">{children}</body>
+    <html
+      lang="ko"
+      className="antialiased scroll-smooth"
+      suppressHydrationWarning
+    >
+      <body className="">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableColorScheme
+        >
+          <Header />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
