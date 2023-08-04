@@ -1,5 +1,7 @@
 # Next Coin Viewer
 
+> NextJS13 Sever Pagination을 이용한 코인 뷰어
+
 ## Environment Variables
 
 ```bash

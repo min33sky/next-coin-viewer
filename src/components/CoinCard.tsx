@@ -21,7 +21,7 @@ export default async function CoinCard({ coin }: CoinCardProps) {
   const exchanges = await getExchanges(Number(coin.priceUsd));
 
   return (
-    <Card>
+    <Card className="shadow-xl">
       <CardHeader className="space-y-4">
         <CardTitle className="flex items-center gap-x-2">
           <CoinLogo coinId={coin.id} coinSymbol={coin.symbol} />
@@ -33,8 +33,8 @@ export default async function CoinCard({ coin }: CoinCardProps) {
         <div>{currencyFormat(exchanges, 'krw')}</div>
       </CardContent>
       <CardFooter className="flex justify-end">
-        <Button asChild>
-          <Link href={`/coins/${coin.id}`}>자세히 보기</Link>
+        <Button size={'sm'} asChild>
+          <Link href={`/coins/${coin.id}`}>자세히</Link>
         </Button>
       </CardFooter>
     </Card>

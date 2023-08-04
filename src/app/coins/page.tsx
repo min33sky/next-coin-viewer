@@ -1,4 +1,5 @@
 import getAllCoins from '@/actions/getAllCoins';
+import { AlertArea } from '@/components/AlertArea';
 import CoinCard from '@/components/CoinCard';
 import InfinityScrollTrigger from '@/components/InfinityScrollTrigger';
 import SearchBar from '@/components/SearchBar';
@@ -17,11 +18,7 @@ export default async function CoinsPage({ searchParams }: CoinsPageProps) {
   // console.log('모든 코인: ', coins);
 
   if (coins.data.length === 0) {
-    return (
-      <div>
-        <h1>코인이 없습니다.</h1>
-      </div>
-    );
+    return <AlertArea message="코인이 존재하지 않습니다." />;
   }
 
   return (

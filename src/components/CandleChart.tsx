@@ -2,12 +2,16 @@
 
 import { CandleList } from '@/types/coin';
 import ApexChart from 'react-apexcharts';
+import { AlertArea } from './AlertArea';
 
 interface CandleChartProps {
   candleData: CandleList;
 }
 
 export default function CandleChart({ candleData }: CandleChartProps) {
+  if (!Array.isArray(candleData) || candleData.length === 0)
+    return <AlertArea message="해당 코인은 차트 데이터가 존재하지 않아요." />;
+
   return (
     <section className="bg-slate-900/70 dark:bg-muted/40 p-4 rounded-lg shadow-xl">
       <ApexChart
