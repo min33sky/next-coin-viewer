@@ -1,10 +1,20 @@
+import { cn } from '@/lib/utils';
 import React from 'react';
-import { BeatLoader } from 'react-spinners';
 
 export default function Loading() {
   return (
-    <div className="flex items-center justify-center h-full">
-      <BeatLoader color="#36d7b7" />
+    <div className="h-full flex justify-center items-center space-x-1">
+      {Array(3)
+        .fill(0)
+        .map((_, index) => (
+          <div
+            key={index}
+            style={{
+              animationDelay: `${index * 0.2}s`,
+            }}
+            className={cn('h-5 w-5 bg-teal-500 rounded-full animate-bounce')}
+          />
+        ))}
     </div>
   );
 }
