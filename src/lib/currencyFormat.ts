@@ -1,6 +1,6 @@
-export default function currencyFormat(price: number) {
-  return new Intl.NumberFormat('ko-KR', {
+export default function currencyFormat(price: number, currency: 'usd' | 'krw') {
+  return new Intl.NumberFormat(currency === 'usd' ? 'en-US' : 'ko-KR', {
     style: 'currency',
-    currency: 'KRW',
+    currency: currency === 'usd' ? 'USD' : 'KRW',
   }).format(price);
 }

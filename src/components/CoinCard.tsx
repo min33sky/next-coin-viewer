@@ -30,7 +30,7 @@ export default async function CoinCard({ coin }: CoinCardProps) {
         <CardDescription>현재 {coin.rank}위</CardDescription>
       </CardHeader>
       <CardContent>
-        <div>{currencyFormat(exchanges)}</div>
+        <div>{currencyFormat(exchanges, 'krw')}</div>
       </CardContent>
       <CardFooter className="flex justify-end">
         <Button asChild>

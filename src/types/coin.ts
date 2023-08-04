@@ -17,3 +17,16 @@ export type Coin = {
   vwap24Hr: string; //  "5910.4110950985770000" korean meaning: "24시간 평균 거래량"
   explorer: string; // "https://blockchain.info/" korean meaning: "익스플로러"
 };
+
+export type CandleList = Candle[];
+
+export type Candle = {
+  time_open: number;
+  time_close: number;
+  open: string;
+  high: string;
+  low: string;
+  close: string;
+  volume: string;
+  market_cap: number;
+};
