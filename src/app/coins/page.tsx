@@ -32,7 +32,8 @@ export default async function CoinsPage({ searchParams }: CoinsPageProps) {
         {coins.data.map((coin) => (
           <CoinCard key={coin.id} coin={coin} />
         ))}
-        <InfinityScrollTrigger limit={limit} />
+
+        {/* <InfinityScrollTrigger limit={limit} /> */}
       </ul>
     </main>
   );
