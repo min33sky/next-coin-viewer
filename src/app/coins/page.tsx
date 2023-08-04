@@ -9,13 +9,15 @@ interface CoinsPageProps {
 }
 
 export default async function CoinsPage({ searchParams }: CoinsPageProps) {
-  console.log('검색 파라미터: ', searchParams);
+  // console.log('검색 파라미터: ', searchParams);
 
   const limit = searchParams.limit ? Number(searchParams.limit) : 20;
 
   const coins = await getAllCoins(limit);
 
   // console.log('모든 코인: ', coins);
+
+  const hasNext = limit - coins.data.length === 0;
 
   if (coins.data.length === 0) {
     return <AlertArea message="코인이 존재하지 않습니다." />;
@@ -29,9 +31,9 @@ export default async function CoinsPage({ searchParams }: CoinsPageProps) {
         {coins.data.map((coin) => (
           <CoinCard key={coin.id} coin={coin} />
         ))}
-
-        {/* <InfinityScrollTrigger limit={limit} /> */}
       </ul>
+
+      <InfinityScrollTrigger limit={limit} hasNextPage={hasNext} />
     </main>
   );
 }

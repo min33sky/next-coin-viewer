@@ -2,13 +2,16 @@
 
 import { useRouter } from 'next/navigation';
 import React, { useCallback } from 'react';
+import Spinner from './Spinner';
 
 interface InfinityScrollTriggerProps {
   limit: number;
+  hasNextPage?: boolean;
 }
 
 export default function InfinityScrollTrigger({
   limit,
+  hasNextPage = true,
 }: InfinityScrollTriggerProps) {
   const router = useRouter();
 
@@ -21,7 +24,7 @@ export default function InfinityScrollTrigger({
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               console.log('triggered');
-              router.push(`?limit=${limit + 10}`, {
+              router.push(`?limit=${limit + 20}`, {
                 scroll: false,
               });
               observer.disconnect();
@@ -40,13 +43,16 @@ export default function InfinityScrollTrigger({
     [limit, router],
   );
 
+  if (!hasNextPage) return null;
+
   return (
     <div
       aria-label="Infinity Scroll Trigger"
       ref={triggerRef}
-      className="h-1 w-1 bg-red-400"
+      className="py-8 w-full"
     >
       <p className="sr-only">InfinityScrollTrigger</p>
+      <Spinner />
     </div>
   );
 }
