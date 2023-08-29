@@ -19,14 +19,14 @@ export default function SearchBar({ keyword }: SearchBarProps) {
 
   const query = useDebounce(text, 1000);
 
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  console.log('query: ', query);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     /**
-     * 1. 검색어와 페이지가 포함된 링크로 들어왔을 때 초기화되는 것을 막기 위해
-     * 2. 새로 고침했을 때 키워드가 초기화되는 것을 막기 위해
+     *? 1. 검색어와 페이지가 포함된 링크로 들어왔을 때 초기화되는 것을 막기 위해
+     *? 2. 새로 고침했을 때 키워드가 초기화되는 것을 막기 위해
      */
     if (initialRender.current) {
       initialRender.current = false;
@@ -41,6 +41,14 @@ export default function SearchBar({ keyword }: SearchBarProps) {
     }
   }, [query, router]);
 
+  useEffect(() => {
+    if (query !== keyword) {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
+  }, [keyword, query]);
+
   return (
     <section className="relative w-full max-w-xl mx-auto">
       <SearchIcon className="absolute h-[1.2rem] w-[1.2rem] text-gray-400 left-3 top-1/2 transform -translate-y-1/2" />
@@ -53,6 +61,11 @@ export default function SearchBar({ keyword }: SearchBarProps) {
           setText(e.target.value);
         }}
       />
+      {isLoading && (
+        <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-100"></div>
+        </div>
+      )}
     </section>
   );
 }
