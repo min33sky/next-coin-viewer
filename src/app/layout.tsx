@@ -24,6 +24,8 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="system"
           enableColorScheme
+          disableTransitionOnChange
+          storageKey="coin-theme"
         >
           <Header />
           {children}

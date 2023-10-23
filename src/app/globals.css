@@ -4,6 +4,32 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+:root {
+  height: 100%;
+}
+
+* {
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  @apply bg-transparent w-2;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-slate-500/80 rounded-full;
+}
+
+.scrollbar-hidden::-webkit-scrollbar-thumb {
+  @apply bg-transparent;
+}
+
+.scrollbar-hidden:hover::-webkit-scrollbar-thumb {
+  @apply bg-slate-500;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -71,12 +97,6 @@
 }
 
 @layer base {
-  html,
-  body,
-  :root {
-    height: 100%;
-  }
-
   * {
     @apply border-border;
   }

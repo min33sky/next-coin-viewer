@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import React, { useCallback } from 'react';
-import Spinner from './Spinner';
+import Spinner from './spinner';
 
 interface InfinityScrollTriggerProps {
   limit: number;

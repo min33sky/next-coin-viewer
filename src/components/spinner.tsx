@@ -1,5 +1,4 @@
 import { cn } from '@/lib/utils';
-import React from 'react';
 
 export default function Spinner() {
   return (
@@ -12,7 +11,7 @@ export default function Spinner() {
             style={{
               animationDelay: `${index * 0.2}s`,
             }}
-            className={cn('h-5 w-5 bg-teal-500 rounded-full animate-bounce')}
+            className={cn('h-5 w-5 bg-cyan-600 rounded-full animate-bounce')}
           />
         ))}
     </div>

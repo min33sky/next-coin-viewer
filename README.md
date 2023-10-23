@@ -2,6 +2,14 @@
 
 > NextJS13 Sever Pagination을 이용한 코인 뷰어
 
+## Stack
+
+- React
+- Next.js
+- Tailwind CSS
+- TypeScript
+- ApexCharts
+
 ## Environment Variables
 
 ```bash
