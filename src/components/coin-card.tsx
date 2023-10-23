@@ -8,7 +8,7 @@ import {
   CardFooter,
 } from './ui/card';
 import { Coin } from '@/types/coin';
-import CoinLogo from './CoinLogo';
+import CoinLogo from './coin-logo';
 import Link from 'next/link';
 import getExchanges from '@/lib/getExchanges';
 import currencyFormat from '@/lib/currencyFormat';
@@ -33,8 +33,8 @@ export default async function CoinCard({ coin }: CoinCardProps) {
         <div>{currencyFormat(exchanges, 'krw')}</div>
       </CardContent>
       <CardFooter className="flex justify-end">
-        <Button size={'sm'} asChild>
-          <Link href={`/coins/${coin.id}`}>자세히</Link>
+        <Button size={'sm'} variant={'cyan'} asChild>
+          <Link href={`/coins/${coin.id}`}>상세 정보</Link>
         </Button>
       </CardFooter>
     </Card>

@@ -1,8 +1,8 @@
 import getAllCoins from '@/actions/getAllCoins';
 import getCoinsByKeyword from '@/actions/getCoinsByKeyword';
-import { AlertArea } from '@/components/AlertArea';
-import CoinCard from '@/components/CoinCard';
 import InfinityScrollTrigger from '@/components/InfinityScrollTrigger';
+import { AlertArea } from '@/components/alert-area';
+import CoinCard from '@/components/coin-card';
 import SearchBar from '@/components/seatch-bar';
 import { TrendingUpIcon } from 'lucide-react';
 
@@ -10,9 +10,10 @@ interface CoinsPageProps {
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
+/**
+ * 코인 목록 페이지
+ */
 export default async function CoinsPage({ searchParams }: CoinsPageProps) {
-  // console.log('검색 파라미터: ', searchParams);
-
   const limit = searchParams.limit ? Number(searchParams.limit) : 20;
   const query = searchParams.query ? String(searchParams.query) : '';
 
@@ -32,7 +33,7 @@ export default async function CoinsPage({ searchParams }: CoinsPageProps) {
 
   if (coins.length === 0) {
     return (
-      <main className="mt-24 container space-y-10">
+      <main className="pt-24 container space-y-10">
         <SearchBar />
         <AlertArea message="코인이 존재하지 않습니다." />
       </main>

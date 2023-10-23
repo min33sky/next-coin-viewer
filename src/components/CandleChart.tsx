@@ -2,7 +2,7 @@
 
 import { CandleList } from '@/types/coin';
 import ApexChart from 'react-apexcharts';
-import { AlertArea } from './AlertArea';
+import { AlertArea } from './alert-area';
 
 interface CandleChartProps {
   candleData: CandleList;

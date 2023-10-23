@@ -2,7 +2,7 @@ import getCandles from '@/actions/getCandles';
 import getCoin from '@/actions/getCoin';
 import BackButton from '@/components/BackButton';
 import CandleChart from '@/components/CandleChart';
-import CoinLogo from '@/components/CoinLogo';
+import CoinLogo from '@/components/coin-logo';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import currencyFormat from '@/lib/currencyFormat';
