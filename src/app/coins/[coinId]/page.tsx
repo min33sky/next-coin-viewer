@@ -1,7 +1,6 @@
 import getCandles from '@/actions/getCandles';
 import getCoin from '@/actions/getCoin';
 import BackButton from '@/components/back-button';
-import CandleChart from '@/components/CandleChart';
 import CoinLogo from '@/components/coin-logo';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -19,8 +18,12 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
+import dynamic from 'next/dynamic';
 import React from 'react';
 import compactFormat from '@/lib/compact-format';
+const CandleChart = dynamic(() => import('@/components/CandleChart'), {
+  ssr: false,
+});
 
 interface CoinDetailPageProps {
   params: {
