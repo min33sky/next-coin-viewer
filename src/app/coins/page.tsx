@@ -3,7 +3,7 @@ import getCoinsByKeyword from '@/actions/getCoinsByKeyword';
 import InfinityScrollTrigger from '@/components/InfinityScrollTrigger';
 import { AlertArea } from '@/components/alert-area';
 import CoinCard from '@/components/coin-card';
-import SearchBar from '@/components/seatch-bar';
+import SearchBar from '@/components/search-bar';
 import { TrendingUpIcon } from 'lucide-react';
 
 interface CoinsPageProps {
