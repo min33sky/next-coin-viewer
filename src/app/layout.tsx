@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/header';
 
 export const metadata: Metadata = {
-  title: '오늘의 코인',
+  title: '오늘의 코인 🪙',
   description: 'Coin viewer',
 };
 

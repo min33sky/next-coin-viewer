@@ -1,6 +1,6 @@
 import getCandles from '@/actions/getCandles';
 import getCoin from '@/actions/getCoin';
-import BackButton from '@/components/BackButton';
+import BackButton from '@/components/back-button';
 import CandleChart from '@/components/CandleChart';
 import CoinLogo from '@/components/coin-logo';
 import { Button } from '@/components/ui/button';
@@ -9,7 +9,18 @@ import currencyFormat from '@/lib/currencyFormat';
 import getExchanges from '@/lib/getExchanges';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+
 import React from 'react';
+import compactFormat from '@/lib/compact-format';
 
 interface CoinDetailPageProps {
   params: {
@@ -47,30 +58,67 @@ export default async function CoinDetailPage({ params }: CoinDetailPageProps) {
 
       <Separator className="my-6" />
 
-      <div className="flex flex-col space-y-2 text-base">
-        <p className="text-right">🇰🇷 : {currencyFormat(exchanges, 'krw')}</p>
-        <p className="text-right">
-          🇺🇸 : {currencyFormat(Number(coinData.priceUsd), 'usd')}
-        </p>
+      <div className="grid grid-cols-2 grid-rows-2 text-center gap-2">
+        <div>원화</div>
+        <div>달러</div>
+        <div className="">{currencyFormat(exchanges, 'krw')}</div>
+        <div className="">
+          {currencyFormat(Number(coinData.priceUsd), 'usd')}
+        </div>
       </div>
 
-      <div>
-        <p>공급량 : {coinData.supply}</p>
-        <p>최대 공급량: {coinData.maxSupply || '정보 없음'}</p>
-        <p>시가 총액: {coinData.marketCapUsd}</p>
-        <p>24시간 거래량: {coinData.volumeUsd24Hr}</p>
-        <p
-          className={cn(
-            'text-red-500',
-            changePercent24Hr > 0 && 'text-green-500',
-          )}
-        >
-          24시간 변화율: {changePercent24Hr}%
-        </p>
-        <p>24시간 평균 거래량: {coinData.vwap24Hr}</p>
+      <Table className="mt-8 min-w-[500px]">
+        <TableCaption>코인 상세 정보 테이블</TableCaption>
+        <TableHeader>
+          <TableRow className="">
+            <TableHead className="shrink-0 text-right">공급량</TableHead>
+            <TableHead className=" text-right">최대공급량</TableHead>
+            <TableHead className="shrink-0 text-right">시가총액</TableHead>
+            <TableHead className="shrink-0 text-right">24시간 거래량</TableHead>
+            <TableHead className="shrink-0 text-right">
+              24시간 평균 거래량
+            </TableHead>
+            <TableHead className="shrink-0 text-right">24시간 변화율</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow className="">
+            <TableCell className="shrink-0 text-right">
+              {compactFormat(parseInt(coinData.supply))}
+            </TableCell>
+            <TableCell className="shrink-0 text-right">
+              {compactFormat(parseInt(coinData.maxSupply)) || '정보 없음'}
+            </TableCell>
+            <TableCell className="shrink-0 text-right">
+              {compactFormat(parseInt(coinData.marketCapUsd))}
+            </TableCell>
+            <TableCell className="shrink-0 text-right">
+              {compactFormat(parseInt(coinData.volumeUsd24Hr))}
+            </TableCell>
+            <TableCell className="shrink-0 text-right">
+              {compactFormat(parseInt(coinData.vwap24Hr))}
+            </TableCell>
+            <TableCell
+              className={cn(
+                'text-red-500 text-right',
+                changePercent24Hr > 0 && 'text-green-500',
+              )}
+            >
+              {changePercent24Hr}%
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
 
-        <Button variant={'link'} size={'sm'} asChild>
-          <Link href={coinData.explorer}>관련 사이트로 이동하기</Link>
+      <div className="mt-8 flex items-center justify-center">
+        <Button variant={'cyan'} size={'sm'} asChild>
+          <Link
+            href={coinData.explorer}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            관련 사이트로 이동하기
+          </Link>
         </Button>
       </div>
 
