@@ -71,31 +71,29 @@ export default async function CoinDetailPage({ params }: CoinDetailPageProps) {
         <TableCaption>코인 상세 정보 테이블</TableCaption>
         <TableHeader>
           <TableRow className="">
-            <TableHead className="shrink-0 text-right">공급량</TableHead>
+            <TableHead className="text-right">공급량</TableHead>
             <TableHead className=" text-right">최대공급량</TableHead>
-            <TableHead className="shrink-0 text-right">시가총액</TableHead>
-            <TableHead className="shrink-0 text-right">24시간 거래량</TableHead>
-            <TableHead className="shrink-0 text-right">
-              24시간 평균 거래량
-            </TableHead>
-            <TableHead className="shrink-0 text-right">24시간 변화율</TableHead>
+            <TableHead className="text-right">시가총액</TableHead>
+            <TableHead className="text-right">24시간 거래량</TableHead>
+            <TableHead className="text-right">24시간 평균 거래량</TableHead>
+            <TableHead className="text-right">24시간 변화율</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           <TableRow className="">
-            <TableCell className="shrink-0 text-right">
+            <TableCell className="text-right">
               {compactFormat(parseInt(coinData.supply))}
             </TableCell>
-            <TableCell className="shrink-0 text-right">
+            <TableCell className="text-right">
               {compactFormat(parseInt(coinData.maxSupply)) || '정보 없음'}
             </TableCell>
-            <TableCell className="shrink-0 text-right">
+            <TableCell className="text-right">
               {compactFormat(parseInt(coinData.marketCapUsd))}
             </TableCell>
-            <TableCell className="shrink-0 text-right">
+            <TableCell className="text-right">
               {compactFormat(parseInt(coinData.volumeUsd24Hr))}
             </TableCell>
-            <TableCell className="shrink-0 text-right">
+            <TableCell className="text-right">
               {compactFormat(parseInt(coinData.vwap24Hr))}
             </TableCell>
             <TableCell
