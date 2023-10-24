@@ -21,6 +21,7 @@ import {
 import dynamic from 'next/dynamic';
 import React from 'react';
 import compactFormat from '@/lib/compact-format';
+import { TrendingDownIcon, TrendingUpIcon } from 'lucide-react';
 const CandleChart = dynamic(() => import('@/components/CandleChart'), {
   ssr: false,
 });
@@ -105,6 +106,11 @@ export default async function CoinDetailPage({ params }: CoinDetailPageProps) {
                 changePercent24Hr > 0 && 'text-green-500',
               )}
             >
+              {changePercent24Hr > 0 ? (
+                <TrendingUpIcon size={16} className="inline-block mr-2" />
+              ) : (
+                <TrendingDownIcon size={16} className="inline-block mr-2" />
+              )}
               {changePercent24Hr}%
             </TableCell>
           </TableRow>
