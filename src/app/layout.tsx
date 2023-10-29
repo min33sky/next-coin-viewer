@@ -2,6 +2,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import './globals.css';
 import type { Metadata } from 'next';
 import Header from '@/components/header';
+import 'pretendard/dist/web/static/pretendard.css';
 
 export const metadata: Metadata = {
   title: '오늘의 코인 🪙',
